@@ -1,5 +1,4 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { IsOptional } from 'class-validator';
 
 @Entity('users')
 export class User {
@@ -27,12 +26,14 @@ export class User {
     nullable: true,
     length: 255,
     type: 'varchar',
+    unique: true,
   })
   phone: string;
   @Column({
     nullable: false,
     length: 255,
     type: 'varchar',
+    unique: true,
   })
   email: string;
   @Column({
