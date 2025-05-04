@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { IsOptional } from 'class-validator';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { PatientsAppointment } from '../../patients_appointment/entities/patients_appointment.entity';
+import { PatientsRecord } from 'src/patients_records/entities/patients_record.entity';
 
 @Entity('users')
 export class User {
@@ -27,12 +28,14 @@ export class User {
     nullable: true,
     length: 255,
     type: 'varchar',
+    unique: true,
   })
   phone: string;
   @Column({
     nullable: false,
     length: 255,
     type: 'varchar',
+    unique: true,
   })
   email: string;
   @Column({
@@ -65,4 +68,14 @@ export class User {
     default: () => 'CURRENT_TIMESTAMP',
   })
   CreatedAt: Date;
+
+  @OneToMany(() => PatientsAppointment, (appointment) => appointment.user, {
+    cascade: true,
+  })
+  appointment: PatientsAppointment[];
+
+  @OneToMany(() => PatientsRecord, (patientRecord) => patientRecord.user, {
+    cascade: true,
+  })
+  patientsRecords: PatientsRecord[];
 }

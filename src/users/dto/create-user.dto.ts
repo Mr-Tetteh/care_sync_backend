@@ -1,11 +1,11 @@
 import {
-  IsDate,
   IsEmail,
   IsNotEmpty,
   IsOptional,
   IsString,
 } from 'class-validator';
 import { Transform } from 'class-transformer';
+import { Unique } from 'typeorm';
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -19,9 +19,11 @@ export class CreateUserDto {
   other_names: string;
   @IsNotEmpty()
   @IsString()
+  @Unique(['phone'])
   phone: string;
   @IsNotEmpty()
   @IsEmail()
+  @Unique(['email'])
   email: string;
   @IsNotEmpty()
   @IsString()
