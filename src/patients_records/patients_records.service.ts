@@ -33,7 +33,7 @@ export class PatientsRecordsService {
   }
 
   findAll() {
-    return `This action returns all patientsRecords`;
+    return this.patientRecordRepository.find();
   }
 
   findOne(id: number) {
@@ -41,7 +41,7 @@ export class PatientsRecordsService {
   }
 
   update(id: number, updatePatientsRecordDto: UpdatePatientsRecordDto) {
-    return `This action updates a #${id} patientsRecord`;
+    return this.patientRecordRepository.update({ id }, updatePatientsRecordDto);
   }
 
   remove(id: number) {
