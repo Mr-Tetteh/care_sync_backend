@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { PatientsAppointment } from '../../patients_appointment/entities/patients_appointment.entity';
 
 @Entity('users')
 export class User {
@@ -66,4 +67,9 @@ export class User {
     default: () => 'CURRENT_TIMESTAMP',
   })
   CreatedAt: Date;
+
+  @OneToMany(() => PatientsAppointment, (appointment) => appointment.user, {
+    cascade: true,
+  })
+  appointment: PatientsAppointment[];
 }
