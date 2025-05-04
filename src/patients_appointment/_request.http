@@ -1,0 +1,33 @@
+### GET request to example server
+GET hhttp://localhost:3000/patients-appointment
+    Content-Type: application/json
+    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJkYW5pZWxzdGF5NzNAZ21haWwuY29tIiwicm9sZSI6InBhdGllbnQiLCJwaG9uZSI6IjAyNDQ1NDQ2NjExIiwiaWF0IjoxNzQ2MzU3NjI1LCJleHAiOjE3NDYzNjEyMjV9.-jveE_YYSOCeQ3etJjm4BWzOLuzTaaMf4Kl7135k2m4
+
+
+###
+POST http://localhost:3000/patients-appointment
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJkYW5pZWxzdGF5NzNAZ21haWwuY29tIiwicm9sZSI6InBhdGllbnQiLCJwaG9uZSI6IjAyNDQ1NDQ2NjExIiwiaWF0IjoxNzQ2MzU3NjI1LCJleHAiOjE3NDYzNjEyMjV9.-jveE_YYSOCeQ3etJjm4BWzOLuzTaaMf4Kl7135k2m4
+
+{
+  "appointment_date" : "2000-02-03",
+  "appointment_time" : "09:30",
+  "reason" : "Monthly Check Up"
+}
+
+###
+PATCH  http://localhost:3000/patients-appointment/6
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJkYW5pZWxzdGF5NzNAZ21haWwuY29tIiwicm9sZSI6InBhdGllbnQiLCJwaG9uZSI6IjAyNDQ1NDQ2NjExIiwiaWF0IjoxNzQ2MzU3NjI1LCJleHAiOjE3NDYzNjEyMjV9.-jveE_YYSOCeQ3etJjm4BWzOLuzTaaMf4Kl7135k2m4
+
+{
+  "appointment_date" : "2000-02-03",
+  "appointment_time" : "09:40",
+  "reason" : "Monthly Check Upppppp",
+  "status": "approved"
+}
+
+###
+DELETE http://localhost:3000/patients-appointment/8
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJkYW5pZWxzdGF5NzNAZ21haWwuY29tIiwicm9sZSI6InBhdGllbnQiLCJwaG9uZSI6IjAyNDQ1NDQ2NjExIiwiaWF0IjoxNzQ2MzU3NjI1LCJleHAiOjE3NDYzNjEyMjV9.-jveE_YYSOCeQ3etJjm4BWzOLuzTaaMf4Kl7135k2m4

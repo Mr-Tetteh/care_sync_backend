@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreatePatientsAppointmentDto } from './dto/create-patients_appointment.dto';
 import { UpdatePatientsAppointmentDto } from './dto/update-patients_appointment.dto';
 import { PatientsAppointment } from './entities/patients_appointment.entity';
@@ -39,10 +39,17 @@ export class PatientsAppointmentService {
     id: number,
     updatePatientsAppointmentDto: UpdatePatientsAppointmentDto,
   ) {
-    return `This action updates a #${id} patientsAppointment`;
+    return this.patientAppointmentRepository.update(
+      { id },
+      updatePatientsAppointmentDto,
+    );
   }
 
-  remove(id: number) {
-    return this.patientAppointmentRepository.delete(id);
+  public async remove(id: number) {
+    try {
+      return await this.patientAppointmentRepository.delete(id);
+    } catch (error) {
+      return new BadRequestException('Sorry appointment not found');
+    }
   }
 }

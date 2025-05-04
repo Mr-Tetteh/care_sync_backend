@@ -33,6 +33,7 @@ export class PatientsAppointmentController {
   }
 
   @Get()
+  @UseGuards(AuthGuard)
   findAll() {
     return this.patientsAppointmentService.findAll();
   }
@@ -54,6 +55,7 @@ export class PatientsAppointmentController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard)
   remove(@Param('id') id: string) {
     return this.patientsAppointmentService.remove(+id);
   }

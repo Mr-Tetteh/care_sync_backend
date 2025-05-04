@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { PatientsAppointment } from '../../patients_appointment/entities/patients_appointment.entity';
+import { PatientsRecord } from 'src/patients_records/entities/patients_record.entity';
 
 @Entity('users')
 export class User {
@@ -72,4 +73,9 @@ export class User {
     cascade: true,
   })
   appointment: PatientsAppointment[];
+
+  @OneToMany(() => PatientsRecord, (patientRecord) => patientRecord.user, {
+    cascade: true,
+  })
+  patientsRecords: PatientsRecord[];
 }
