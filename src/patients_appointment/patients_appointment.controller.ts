@@ -21,15 +21,8 @@ export class PatientsAppointmentController {
   ) {}
 
   @Post()
-  @UseGuards(AuthGuard)
-  create(
-    @Body() createPatientsAppointmentDto: CreatePatientsAppointmentDto,
-    @Request() req,
-  ) {
-    return this.patientsAppointmentService.create(
-      createPatientsAppointmentDto,
-      req.user,
-    );
+  create(@Body() createPatientsAppointmentDto: CreatePatientsAppointmentDto) {
+    return this.patientsAppointmentService.create(createPatientsAppointmentDto);
   }
 
   @Get()

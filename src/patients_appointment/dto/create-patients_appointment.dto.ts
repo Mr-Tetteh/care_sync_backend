@@ -1,6 +1,12 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreatePatientsAppointmentDto {
+  @IsNotEmpty()
+  @IsString()
+  full_name: string;
+  @IsNotEmpty()
+  @IsNumber()
+  phone_number: number;
   @IsNotEmpty()
   @IsString()
   reason: string;
