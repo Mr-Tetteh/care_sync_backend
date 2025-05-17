@@ -7,6 +7,16 @@ export class PatientsAppointment {
   id: number;
 
   @Column({
+    type: 'varchar',
+    nullable: false,
+  })
+  full_name: string;
+  @Column({
+    type: 'varchar',
+    nullable: false,
+  })
+  phone_number: number;
+  @Column({
     type: 'date',
     nullable: false,
   })

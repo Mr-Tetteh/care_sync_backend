@@ -16,18 +16,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiO
 }
 
 ###
-PATCH  http://localhost:3000/patients-appointment/6
+PATCH  http://localhost:3000/patients-appointment/9
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJkYW5pZWxzdGF5NzNAZ21haWwuY29tIiwicm9sZSI6InBhdGllbnQiLCJwaG9uZSI6IjAyNDQ1NDQ2NjExIiwiaWF0IjoxNzQ2MzU3NjI1LCJleHAiOjE3NDYzNjEyMjV9.-jveE_YYSOCeQ3etJjm4BWzOLuzTaaMf4Kl7135k2m4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJkYW5pZWxzdGF5NzNAZ21haWwuY29tIiwicm9sZSI6InBhdGllbnQiLCJwaG9uZSI6IjAyNDQ1NDQ2NjExIiwiaWF0IjoxNzQ2ODAwMjIzLCJleHAiOjE3NDY4MDM4MjN9.Cvc6HhBl8yh5wMa_oCXZBqjbF5a-AqMO_N4CusbYyn0
 
 {
-  "appointment_date" : "2000-02-03",
-  "appointment_time" : "09:40",
-  "reason" : "Monthly Check Upppppp",
   "status": "approved"
 }
 
 ###
-DELETE http://localhost:3000/patients-appointment/8
+DELETE http://localhost:3000/patients-appointment/9
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJkYW5pZWxzdGF5NzNAZ21haWwuY29tIiwicm9sZSI6InBhdGllbnQiLCJwaG9uZSI6IjAyNDQ1NDQ2NjExIiwiaWF0IjoxNzQ2MzU3NjI1LCJleHAiOjE3NDYzNjEyMjV9.-jveE_YYSOCeQ3etJjm4BWzOLuzTaaMf4Kl7135k2m4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJkYW5pZWxzdGF5NzNAZ21haWwuY29tIiwicm9sZSI6InBhdGllbnQiLCJwaG9uZSI6IjAyNDQ1NDQ2NjExIiwiaWF0IjoxNzQ2ODAwMjIzLCJleHAiOjE3NDY4MDM4MjN9.Cvc6HhBl8yh5wMa_oCXZBqjbF5a-AqMO_N4CusbYyn0

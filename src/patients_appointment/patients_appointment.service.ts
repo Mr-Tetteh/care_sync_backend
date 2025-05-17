@@ -12,16 +12,13 @@ export class PatientsAppointmentService {
     private readonly patientAppointmentRepository: Repository<PatientsAppointment>,
   ) {}
 
-  create(
-    createPatientsAppointmentDto: CreatePatientsAppointmentDto,
-    user: any,
-  ) {
-    const UserId = user.sub || user.id || user.user.id;
+  create(createPatientsAppointmentDto: CreatePatientsAppointmentDto) {
     const newAppointment = this.patientAppointmentRepository.create({
+      full_name: createPatientsAppointmentDto.full_name,
+      phone_number: createPatientsAppointmentDto.phone_number,
       appointment_date: createPatientsAppointmentDto.appointment_date,
       appointment_time: createPatientsAppointmentDto.appointment_time,
       reason: createPatientsAppointmentDto.reason,
-      user: { id: UserId },
     });
 
     return this.patientAppointmentRepository.save(newAppointment);
