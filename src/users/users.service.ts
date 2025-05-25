@@ -38,6 +38,10 @@ export class UsersService {
     return this.userRepository.findOne({ where: { email } });
   }
 
+  findByRole() {
+    return this.userRepository.find({ where: { role: 'patient' } });
+  }
+
   update(id: number, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
   }
