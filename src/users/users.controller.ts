@@ -23,21 +23,21 @@ export class UsersController {
   }
 
   @Get()
+  @UseGuards(AuthGuard)
   findAll() {
     return this.usersService.findAll();
+  }
+
+  @Get('staff')
+  @UseGuards(AuthGuard)
+  findAllStaff() {
+    return this.usersService.findByRole();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
-
-  @Get('roles')
-  @UseGuards(AuthGuard)
-  findByRole() {
-    return this.usersService.findByRole();
-  }
-
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(+id, updateUserDto);
