@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { Repository } from 'typeorm';
+import { Not, Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
@@ -31,7 +31,7 @@ export class UsersService {
   }
 
   findAll() {
-    return `This action returns all users`;
+    return this.userRepository.find({ where: { role: 'Patient' } });
   }
 
   findOne(email: string) {
@@ -39,7 +39,7 @@ export class UsersService {
   }
 
   findByRole() {
-    return this.userRepository.find({ where: { role: 'patient' } });
+    return this.userRepository.find({ where: { role: Not('Patient') } });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
