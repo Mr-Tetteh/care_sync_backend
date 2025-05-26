@@ -29,7 +29,7 @@ export class PatientsAppointmentService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} patientsAppointment`;
+    return this.patientAppointmentRepository.findOne({ where: { id } });
   }
 
   update(
