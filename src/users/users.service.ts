@@ -38,12 +38,16 @@ export class UsersService {
     return this.userRepository.findOne({ where: { email } });
   }
 
+  findOneById(id: number) {
+    return this.userRepository.findOne({ where: { id } });
+  }
+
   findByRole() {
     return this.userRepository.find({ where: { role: Not('Patient') } });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+    return this.userRepository.update(id, updateUserDto);
   }
 
   remove(id: number) {
