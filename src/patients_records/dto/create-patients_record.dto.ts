@@ -1,4 +1,4 @@
-import { IsBoolean, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreatePatientsRecordDto {
   @IsNotEmpty()
@@ -7,41 +7,13 @@ export class CreatePatientsRecordDto {
 
   @IsNotEmpty()
   @IsString()
-  pulse_rate;
+  doctor_notes;
   @IsNotEmpty()
   @IsString()
-  respiratory_rate;
+  nurse_notes;
   @IsNotEmpty()
   @IsString()
-  blood_pressure;
-  @IsNotEmpty()
-  @IsString()
-  weight;
-  @IsNotEmpty()
-  @IsString()
-  blood_sugar_rate;
-  @IsNotEmpty()
-  @IsBoolean()
-  admitted;
-  @IsNotEmpty()
-  @IsString()
-  ward_number;
-  @IsNotEmpty()
-  @IsString()
-  examination_findings;
-  @IsNotEmpty()
-  @IsString()
-  diagnosis;
-  @IsNotEmpty()
-  @IsString()
-  labs;
-  @IsNotEmpty()
-  @IsString()
-  treatment;
-  @IsNotEmpty()
-  @IsString()
-  additional_note;
-
+  laboratory_notes;
   @IsNotEmpty()
   @IsNumber()
   userId: number;

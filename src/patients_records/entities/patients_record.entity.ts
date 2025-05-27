@@ -6,79 +6,20 @@ export class PatientsRecord {
   @PrimaryGeneratedColumn()
   id: number;
   @Column({
-    type: 'varchar',
-    nullable: false,
-  })
-  temperature: string;
-  @Column({
-    type: 'varchar',
-    nullable: false,
-  })
-  pulse_rate: string;
-  @Column({
-    type: 'varchar',
-    nullable: false,
-  })
-  respiratory_rate: string;
-  @Column({
-    type: 'varchar',
-    nullable: false,
-  })
-  blood_pressure: string;
-  @Column({
-    type: 'varchar',
-    nullable: false,
-  })
-  weight: string;
-  @Column({
-    type: 'varchar',
-    nullable: false,
-  })
-  blood_sugar_rate: string;
-  @Column({
-    nullable: false,
-    default: 0,
-  })
-  admitted: boolean;
-  @Column({
-    type: 'varchar',
+    type: 'longtext',
     nullable: true,
   })
-  ward_number: string;
+  nurse_notes: string;
   @Column({
-    type: 'varchar',
+    type: 'longtext',
     nullable: true,
   })
-  history: string;
+  doctor_notes: string;
   @Column({
-    type: 'varchar',
+    type: 'longtext',
     nullable: true,
   })
-  examination_findings: string;
-
-  @Column({
-    type: 'varchar',
-    nullable: true,
-  })
-  diagnosis: string;
-
-  @Column({
-    type: 'varchar',
-    nullable: true,
-  })
-  labs: string;
-
-  @Column({
-    type: 'varchar',
-    nullable: true,
-  })
-  treatment: string;
-
-  @Column({
-    type: 'varchar',
-    nullable: true,
-  })
-  additional_note: string;
+  laboratory_notes: string;
 
   @ManyToOne(() => User, (user) => user.patientsRecords, {
     onDelete: 'CASCADE',
