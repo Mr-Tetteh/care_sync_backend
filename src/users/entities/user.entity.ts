@@ -41,7 +41,14 @@ export class User {
   @Column({
     nullable: false,
     type: 'enum',
-    enum: ['Admin', 'Patient', 'Nurse', 'Doctor', 'Pharmacist'],
+    enum: [
+      'Manager',
+      'Patient',
+      'Nurse',
+      'Doctor',
+      'Pharmacist',
+      'Lab_Technician',
+    ],
     default: 'patient',
   })
   role: string;
