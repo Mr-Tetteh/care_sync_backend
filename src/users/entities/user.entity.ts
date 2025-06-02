@@ -49,7 +49,7 @@ export class User {
       'Pharmacist',
       'Lab_Technician',
     ],
-    default: 'patient',
+    default: 'Patient',
   })
   role: string;
   @Column({
