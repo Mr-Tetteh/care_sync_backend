@@ -36,6 +36,12 @@ export class PatientsRecordsController {
     return this.patientsRecordsService.findOne(+id);
   }
 
+  @Get('patients/:id')
+  @UseGuards(AuthGuard)
+  findByUserId(@Param('id') userId: number) {
+    return this.patientsRecordsService.findByUserId(userId);
+  }
+
   @Patch(':id')
   @UseGuards(AuthGuard)
   update(

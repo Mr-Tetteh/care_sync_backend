@@ -22,7 +22,7 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
-  @Get()
+  @Get('patients')
   @UseGuards(AuthGuard)
   findAll() {
     return this.usersService.findAll();

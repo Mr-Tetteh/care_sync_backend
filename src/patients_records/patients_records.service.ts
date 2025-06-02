@@ -40,6 +40,12 @@ export class PatientsRecordsService {
     return `This action returns a #${id} patientsRecord`;
   }
 
+  findByUserId(userId: number) {
+    return this.patientRecordRepository.find({
+      where: { user: { id: userId } },
+    });
+  }
+
   update(id: number, updatePatientsRecordDto: UpdatePatientsRecordDto) {
     return this.patientRecordRepository.update({ id }, updatePatientsRecordDto);
   }

@@ -20,7 +20,6 @@ export class CreateUserDto {
   @IsEmail()
   @Unique(['email'])
   email: string;
-  @IsNotEmpty()
   @IsString()
   @IsOptional()
   role?: string;
