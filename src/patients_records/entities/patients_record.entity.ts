@@ -25,4 +25,10 @@ export class PatientsRecord {
     onDelete: 'CASCADE',
   })
   user: User;
+
+  @Column({
+    nullable: false,
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  created_at: Date;
 }

@@ -37,7 +37,7 @@ export class PatientsRecordsService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} patientsRecord`;
+    return this.patientRecordRepository.findOne({ where: { id } });
   }
 
   findByUserId(userId: number) {
