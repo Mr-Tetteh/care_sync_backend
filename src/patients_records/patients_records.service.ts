@@ -40,9 +40,9 @@ export class PatientsRecordsService {
     return this.patientRecordRepository.findOne({ where: { id } });
   }
 
-  findByUserId(userId: number) {
+  findByPatientId(patientId: number) {
     return this.patientRecordRepository.find({
-      where: { user: { id: userId } },
+      where: { patient: { id: patientId } },
     });
   }
 

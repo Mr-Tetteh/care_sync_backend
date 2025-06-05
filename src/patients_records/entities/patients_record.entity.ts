@@ -1,5 +1,6 @@
 import { User } from 'src/users/entities/user.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Patient } from '../../patient/entities/patient.entity';
 
 @Entity('patients_record')
 export class PatientsRecord {
@@ -21,10 +22,16 @@ export class PatientsRecord {
   })
   laboratory_notes: string;
 
-  @ManyToOne(() => User, (user) => user.patientsRecords, {
+  @Column({
+    type: 'longtext',
+    nullable: true,
+  })
+  pharmacist_notes: string;
+
+  @ManyToOne(() => Patient, (patient) => patient.patientsRecords, {
     onDelete: 'CASCADE',
   })
-  user: User;
+  patient: Patient;
 
   @Column({
     nullable: false,

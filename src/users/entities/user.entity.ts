@@ -41,15 +41,8 @@ export class User {
   @Column({
     nullable: false,
     type: 'enum',
-    enum: [
-      'Manager',
-      'Patient',
-      'Nurse',
-      'Doctor',
-      'Pharmacist',
-      'Lab_Technician',
-    ],
-    default: 'Patient',
+    enum: ['Manager', 'Nurse', 'Doctor', 'Pharmacist', 'Lab_Technician'],
+    default: 'Nurse',
   })
   role: string;
   @Column({
@@ -80,9 +73,4 @@ export class User {
     cascade: true,
   })
   appointment: PatientsAppointment[];
-
-  @OneToMany(() => PatientsRecord, (patientRecord) => patientRecord.user, {
-    cascade: true,
-  })
-  patientsRecords: PatientsRecord[];
 }
