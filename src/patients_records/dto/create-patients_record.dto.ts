@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreatePatientsRecordDto {
   @IsNotEmpty()
@@ -14,6 +14,9 @@ export class CreatePatientsRecordDto {
   @IsNotEmpty()
   @IsString()
   laboratory_notes;
+  @IsOptional()
+  @IsString()
+  pharmacist_notes;
   @IsNotEmpty()
   @IsNumber()
   userId: number;

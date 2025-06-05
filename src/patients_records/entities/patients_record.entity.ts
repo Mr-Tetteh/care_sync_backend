@@ -21,6 +21,12 @@ export class PatientsRecord {
   })
   laboratory_notes: string;
 
+  @Column({
+    type: 'longtext',
+    nullable: true,
+  })
+  pharmacist_notes: string;
+
   @ManyToOne(() => User, (user) => user.patientsRecords, {
     onDelete: 'CASCADE',
   })
