@@ -38,8 +38,8 @@ export class PatientsRecordsController {
 
   @Get('patients/:id')
   @UseGuards(AuthGuard)
-  findByUserId(@Param('id') userId: number) {
-    return this.patientsRecordsService.findByUserId(userId);
+  findByPatientId(@Param('id') patientId: number) {
+    return this.patientsRecordsService.findByPatientId(patientId);
   }
 
   @Patch(':id')

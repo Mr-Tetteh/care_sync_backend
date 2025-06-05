@@ -28,15 +28,15 @@ export class PatientsAppointmentService {
       await this.patientAppointmentRepository.save(newAppointment);
 
     // Send SMS notification after successful appointment creation
-    // try {
-    //   const smsMessage = `Hello ${savedAppointment.full_name}, your appointment scheduled for ${savedAppointment.appointment_date} at ${savedAppointment.appointment_time}. is currently pending. You will receive an sms when you appointment is approved`;
-    //   await this.sendWithSMSONLINEGH(
-    //     savedAppointment.phone_number.toString(),
-    //     smsMessage,
-    //   );
-    // } catch (error) {
-    //   console.error('Failed to send SMS notification:', error);
-    // }
+    try {
+      const smsMessage = `Hello ${savedAppointment.full_name}, your appointment scheduled for ${savedAppointment.appointment_date} at ${savedAppointment.appointment_time}. is currently pending. You will receive an sms when you appointment is approved`;
+      await this.sendWithSMSONLINEGH(
+        savedAppointment.phone_number.toString(),
+        smsMessage,
+      );
+    } catch (error) {
+      console.error('Failed to send SMS notification:', error);
+    }
 
     return savedAppointment;
   }
@@ -44,7 +44,7 @@ export class PatientsAppointmentService {
   private async sendWithSMSONLINEGH(
     receiver: string,
     message: string,
-    sender: string = 'GABSAB',
+    sender: string = 'Care Sync',
   ): Promise<any> {
     try {
       const baseUrl = this.configService.get<string>('SMS_GH_ONLINE_BASE_URL');
