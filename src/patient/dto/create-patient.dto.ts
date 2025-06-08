@@ -33,6 +33,10 @@ export class CreatePatientDto {
   @IsNotEmpty()
   address: string;
 
+  @IsString()
+  @IsOptional()
+  NHIS?: string;
+
   @IsNotEmpty()
   @Transform(({ value }) => new Date(value))
   date_of_birth: Date;

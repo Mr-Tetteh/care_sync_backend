@@ -32,7 +32,6 @@ export class Patient {
     nullable: false,
     length: 255,
     type: 'varchar',
-    unique: true,
   })
   phone: string;
 
@@ -69,6 +68,13 @@ export class Patient {
     type: 'varchar',
   })
   address: string;
+
+  @Column({
+    nullable: true,
+    length: 100,
+    type: 'varchar',
+  })
+  NHIS: string;
 
   @Column({
     nullable: false,
