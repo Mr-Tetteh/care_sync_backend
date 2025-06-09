@@ -26,7 +26,7 @@ export class PharmacyController {
   @Get()
   @UseGuards(AuthGuard)
   findAll() {
-    return this.pharmacyService.findAll();
+    return this.pharmacyService.findAllGroupedByCategory();
   }
 
   @Get(':id')
