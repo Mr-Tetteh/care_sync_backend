@@ -20,6 +20,22 @@ export class PharmacyService {
     return this.pharmacyRepository.find();
   }
 
+  async findAllGroupedByCategory() {
+    const allDrugs = await this.pharmacyRepository.find();
+
+    const grouped = allDrugs.reduce((acc, drug) => {
+      const category = drug.drug_category || 'Uncategorized';
+      acc[category] = acc[category] || [];
+      acc[category].push(drug);
+      return acc;
+    }, {});
+
+    return Object.entries(grouped).map(([category, drugs]) => ({
+      category,
+      drugs,
+    }));
+  }
+
   findOne(id: number) {
     return `This action returns a #${id} pharmacy`;
   }

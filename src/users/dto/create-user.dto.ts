@@ -1,25 +1,37 @@
-import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import {
+  IsDateString,
+  IsEmail,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { Transform } from 'class-transformer';
 import { Unique } from 'typeorm';
 
 export class CreateUserDto {
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'First name is required' })
   @IsString()
   first_name: string;
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Last name is required' })
   @IsString()
   last_name: string;
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
-  other_names: string;
-  @IsNotEmpty()
+  other_names?: string;
+  @IsNotEmpty({ message: 'Phone number is required' })
   @IsString()
   @Unique(['phone'])
   phone: string;
-  @IsNotEmpty()
-  @IsEmail()
+
+  @IsNotEmpty({ message: 'Email is required' })
+  @IsEmail({}, { message: 'Invalid email format' })
   @Unique(['email'])
   email: string;
+
+  @IsNotEmpty({ message: 'Gender is required' })
+  @IsString()
+  gender: string;
+
   @IsString()
   @IsOptional()
   role?: string;

@@ -7,10 +7,13 @@ import {
   Param,
   Delete,
   UseGuards,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { PharmacyService } from './pharmacy.service';
 import { CreatePharmacyDto } from './dto/create-pharmacy.dto';
 import { UpdatePharmacyDto } from './dto/update-pharmacy.dto';
+import { UpdateQuantitiesDto } from './dto/update-quantities.dto'; // Add this import
 import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('pharmacy')
@@ -26,7 +29,7 @@ export class PharmacyController {
   @Get()
   @UseGuards(AuthGuard)
   findAll() {
-    return this.pharmacyService.findAll();
+    return this.pharmacyService.findAllGroupedByCategory();
   }
 
   @Get(':id')
@@ -41,6 +44,30 @@ export class PharmacyController {
   ) {
     return this.pharmacyService.update(+id, updatePharmacyDto);
   }
+
+  // Add this new method for updating quantities
+  // @Patch('update-quantities')
+  // @UseGuards(AuthGuard)
+  // async updateQuantities(@Body() updateQuantitiesDto: UpdateQuantitiesDto) {
+  //   try {
+  //     const result = await this.pharmacyService.updateQuantities(
+  //       updateQuantitiesDto.items,
+  //     );
+  //     return {
+  //       success: true,
+  //       message: 'Quantities updated successfully',
+  //       data: result,
+  //     };
+  //   } catch (error) {
+  //     throw new HttpException(
+  //       {
+  //         success: false,
+  //         message: error.message,
+  //       },
+  //       HttpStatus.BAD_REQUEST,
+  //     );
+  //   }
+  // }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
