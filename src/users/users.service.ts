@@ -1,4 +1,9 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Not, Repository } from 'typeorm';
@@ -7,7 +12,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import axios from 'axios';
 import { ConfigService } from '@nestjs/config';
-import { decrypt } from 'dotenv';
 
 @Injectable()
 export class UsersService {
@@ -48,13 +52,6 @@ export class UsersService {
     } catch (error) {
       console.error('Failed to send SMS notification:', error);
     }
-
-    /*   const user = this.userRepository.create({
-         ...createUserDto,
-         password: await bcrypt.hash(createUserDto.password, 10),
-       });
-   
-       return this.userRepository.save(user);*/
   }
 
   findAll() {
@@ -75,6 +72,10 @@ export class UsersService {
 
   update(id: number, updateUserDto: UpdateUserDto) {
     return this.userRepository.update(id, updateUserDto);
+  }
+
+  async updateUser(user: User): Promise<User> {
+    return this.userRepository.save(user);
   }
 
   remove(id: number) {
@@ -124,5 +125,25 @@ export class UsersService {
       }
       throw new Error(`SMS Error: ${error.message}`);
     }
+  }
+
+  async changePassword(id: number, oldPassword: string, newPassword: string) {
+    const user = await this.userRepository.findOneBy({ id });
+    if (!user) {
+      throw new NotFoundException('Sorry user not found');
+    }
+
+    const passwordMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!passwordMatch) {
+      throw new UnauthorizedException('Sorry Old Password is incorrect');
+    }
+
+    const newHashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = newHashedPassword;
+    await this.userRepository.save(user);
+
+    return {
+      message: 'Password changed successfully',
+    };
   }
 }

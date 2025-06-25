@@ -1,14 +1,23 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import * as process from 'node:process';
 import * as bcrypt from 'bcrypt';
+import { User } from '../users/entities/user.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
+    @InjectRepository(User)
+    private userRepository: Repository<User>,
   ) {}
 
   decodeJWT(token: string) {

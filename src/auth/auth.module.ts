@@ -4,6 +4,8 @@ import { AuthService } from './auth.service';
 import { UsersModule } from '../users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import * as process from 'node:process';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from '../users/entities/user.entity';
 
 @Module({
   imports: [
@@ -16,6 +18,7 @@ import * as process from 'node:process';
       },
     }),
     JwtModule.register({ secret: process.env.JWT_SECRET }),
+    TypeOrmModule.forFeature([User]), // ✅ this is the fix
   ],
   controllers: [AuthController],
   providers: [AuthService],

@@ -35,16 +35,9 @@ export class CreateUserDto {
   @IsString()
   @IsOptional()
   role?: string;
-  /*  @IsNotEmpty()
-    @Transform(({ value }) => new Date(value))
-    date_of_birth: Date;*/
-
-  @IsNotEmpty({ message: 'Date of birth is required' })
-  @IsDateString(
-    {},
-    { message: 'Date of birth must be a valid date (YYYY-MM-DD)' },
-  )
-  date_of_birth: string;
+  @IsNotEmpty()
+  @Transform(({ value }) => new Date(value))
+  date_of_birth: Date;
   @IsNotEmpty()
   @IsString()
   password: string;

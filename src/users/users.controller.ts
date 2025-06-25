@@ -7,11 +7,14 @@ import {
   Param,
   Delete,
   UseGuards,
+  Put,
+  Req,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AuthGuard } from '../auth/auth.guard';
+import { ChangePasswordDto } from '../auth/dto/change-password.dto';
 
 @Controller('users')
 export class UsersController {
@@ -49,6 +52,21 @@ export class UsersController {
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(+id, updateUserDto);
   }
+
+  @UseGuards(AuthGuard)
+  @Put('change-password')
+  async changePassword(
+    @Body() changePasswordDto: ChangePasswordDto,
+    @Req() req,
+  ) {
+    return this.usersService.changePassword(
+      req.user.id,
+      changePasswordDto.oldPassword,
+      changePasswordDto.newPassword,
+    );
+  }
+
+  //change password
 
   @Delete(':id')
   remove(@Param('id') id: string) {
