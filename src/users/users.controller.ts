@@ -15,6 +15,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AuthGuard } from '../auth/auth.guard';
 import { ChangePasswordDto } from '../auth/dto/change-password.dto';
+import { ForgotPasswordDto } from './dto/forgot-password.dto';
 
 @Controller('users')
 export class UsersController {
@@ -53,6 +54,7 @@ export class UsersController {
     return this.usersService.update(+id, updateUserDto);
   }
 
+  //change password
   @UseGuards(AuthGuard)
   @Put('change-password')
   async changePassword(
@@ -66,7 +68,10 @@ export class UsersController {
     );
   }
 
-  //change password
+  @Post('forgot-password')
+  async forgotPassword(@Body() forgotPasswordDto: ForgotPasswordDto) {
+    return this.usersService.forgotPassword(forgotPasswordDto.email);
+  }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
