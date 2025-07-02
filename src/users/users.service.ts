@@ -14,6 +14,7 @@ import axios from 'axios';
 import { ConfigService } from '@nestjs/config';
 import { nanoid } from 'nanoid';
 import { ResetToken } from './entities/reset-token.entity';
+import { MailService } from '../mail/mail.service';
 
 @Injectable()
 export class UsersService {
@@ -22,7 +23,8 @@ export class UsersService {
     private readonly userRepository: Repository<User>,
     private readonly configService: ConfigService,
     @InjectRepository(ResetToken)
-    private readonly refreshToken: Repository<ResetToken>,
+    private readonly resetToken: Repository<ResetToken>,
+    private readonly mailService: MailService,
   ) {}
 
   public async create(createUserDto: CreateUserDto) {
@@ -153,17 +155,24 @@ export class UsersService {
 
   async forgotPassword(email: string) {
     const user = await this.userRepository.findOne({ where: { email } });
-    if (!user) {
-      throw new NotFoundException('User with this email does not exist');
-    }
-    const resetToken = nanoid(64);
-    const expiryDate = new Date();
-    expiryDate.setHours(expiryDate.getHours() + 1);
 
-    this.refreshToken.create({
-      token: resetToken,
-      userId: user.id,
-      expiryDate,
-    });
+    //not safe
+    if (user) {
+      const resetToken = nanoid(64);
+      const expiryDate = new Date();
+      expiryDate.setHours(expiryDate.getHours() + 1);
+
+      const token = this.resetToken.create({
+        token: resetToken,
+        userId: user.id,
+        expiryDate,
+      });
+      await this.resetToken.save(token);
+      //reset email to send
+      this.mailService.sendEmail(email, resetToken);
+    }
+    return {
+      message: 'Password reset email sent successfully',
+    };
   }
 }
