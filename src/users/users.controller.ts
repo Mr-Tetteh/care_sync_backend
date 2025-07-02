@@ -40,11 +40,13 @@ export class UsersController {
   }
 
   @Get(':id')
+  @UseGuards(AuthGuard)
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
 
   @Get('staff/:id')
+  @UseGuards(AuthGuard)
   findOneById(@Param('id') id: number) {
     return this.usersService.findOneById(id);
   }
