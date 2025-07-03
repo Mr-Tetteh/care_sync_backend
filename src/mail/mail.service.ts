@@ -8,15 +8,19 @@ export class MailService {
   constructor(private readonly configService: ConfigService) {}
 
   emailTransport() {
+    const port = Number(this.configService.get<string>('SMTP_PORT'));
+    const isSecure = port === 465; // 465 = SSL, 587 = STARTTLS, 25 = Non-secure
+
     const transporter = nodemailer.createTransport({
       host: this.configService.get<string>('SMTP_HOST'),
-      port: Number(this.configService.get<string>('SMTP_PORT')),
-      secure: false,
+      port,
+      secure: isSecure, // true for 465, false for others
       auth: {
         user: this.configService.get<string>('EMAIL_USER'),
         pass: this.configService.get<string>('EMAIL_PASSWORD'),
       },
     } as SMTPTransport.Options);
+
     return transporter;
   }
 
