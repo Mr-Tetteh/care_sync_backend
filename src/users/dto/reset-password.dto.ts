@@ -1,10 +1,9 @@
-import { IsNotEmpty, IsString } from 'class-validator';
-import { Column } from 'typeorm';
+import { IsString } from 'class-validator';
 
 export class ResetPasswordDto {
-  resetToken: string;
-  @IsNotEmpty()
   @IsString()
-  @Column()
+  resetToken: string;
+
+  @IsString()
   newPassword: string;
 }
