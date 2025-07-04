@@ -25,7 +25,7 @@ export class MailService {
   }
 
   async sendEmail(recipient: string, token: string) {
-    const resetLink = `http://localhost:3000/reset-password?token=${token}`;
+    const resetLink = `http://localhost:3000/auth/reset-password?token=${token}`;
     const transport = this.emailTransport();
     const options: nodemailer.SendMailOptions = {
       from: `"Care Sync" <${this.configService.get<string>('EMAIL_USER')}>`,
