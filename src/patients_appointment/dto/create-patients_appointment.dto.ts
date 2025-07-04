@@ -5,12 +5,11 @@ export class CreatePatientsAppointmentDto {
   @IsString()
   full_name: string;
   @IsNotEmpty()
-  @IsNumber()
-  phone_number: number;
+  @IsString()
+  phone_number: string;
   @IsNotEmpty()
   @IsString()
   reason: string;
-
   @IsNotEmpty()
   @IsString()
   appointment_date: string;

@@ -15,7 +15,7 @@ export class PatientsAppointment {
     type: 'varchar',
     nullable: false,
   })
-  phone_number: number;
+  phone_number: string;
   @Column({
     type: 'date',
     nullable: false,

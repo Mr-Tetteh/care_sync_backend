@@ -175,4 +175,25 @@ export class UsersService {
       message: 'Password reset email sent successfully',
     };
   }
+
+  async resetPassword(newPassword: string, resetToken: string) {
+    const token = await this.resetToken.findOne({
+      where: { token: resetToken },
+    });
+
+    if (!token || token.expiryDate < new Date()) {
+      throw new UnauthorizedException('Invalid or expired reset token');
+    }
+
+    const user = await this.userRepository.findOneBy({ id: token.userId });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    user.password = await bcrypt.hash(newPassword, 10);
+    await this.userRepository.save(user);
+    await this.resetToken.delete({ id: token.id });
+    return {
+      message: 'Password reset successfully',
+    };
+  }
 }
