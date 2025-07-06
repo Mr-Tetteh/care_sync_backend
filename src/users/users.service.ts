@@ -149,7 +149,7 @@ export class UsersService {
     await this.userRepository.save(user);
 
     return {
-      message: 'Password changed successfully',
+      message: 'Password changed successfully!',
     };
   }
 
