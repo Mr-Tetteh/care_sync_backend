@@ -78,8 +78,10 @@ export class UsersController {
 
   @Put('reset-password')
   async resetPassword(@Body() resetPasswordDto: ResetPasswordDto) {
-    const { newPassword, resetToken } = resetPasswordDto;
-    return this.usersService.resetPassword(newPassword, resetToken);
+    return this.usersService.resetPassword(
+      resetPasswordDto.newPassword,
+      resetPasswordDto.resetToken,
+    );
   }
 
   @Delete(':id')
