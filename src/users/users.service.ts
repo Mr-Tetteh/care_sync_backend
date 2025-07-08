@@ -49,7 +49,7 @@ export class UsersService {
     });
 
     const saveUser = await this.userRepository.save(user);
-    try {
+   /* try {
       const smsMessage = `Hello ${saveUser.first_name}, welcome to care sync staff portal.  your default password is:
       ${rawPassword}
       
@@ -57,7 +57,7 @@ export class UsersService {
       await this.sendWithSMSONLINEGH(saveUser.phone.toString(), smsMessage);
     } catch (error) {
       console.error('Failed to send SMS notification:', error);
-    }
+    }*/
   }
 
   findAll() {
