@@ -13,13 +13,13 @@ export class PatientService {
   ) {}
 
   create(createPatientDto: CreatePatientDto) {
-   /* if (createPatientDto.email) {
+    if (createPatientDto.email) {
       throw new UnauthorizedException('Patient email exist');
     } else if (createPatientDto.phone) {
       throw new UnauthorizedException('Phone number already exist');
     } else if (createPatientDto.NHIS) {
       throw new UnauthorizedException('NHIS already exist');
-    }*/
+    }
     return this.patientRepository.save(createPatientDto);
   }
 
