@@ -19,7 +19,6 @@ export class CreatePatientDto {
   phone?: string;
 
   @IsOptional()
-  @IsEmail()
   email?: string;
 
   @IsOptional()

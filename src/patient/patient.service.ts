@@ -13,9 +13,6 @@ export class PatientService {
   ) {}
 
   create(createPatientDto: CreatePatientDto) {
-    if (createPatientDto.NHIS) {
-      throw new UnauthorizedException('NHIS already exist');
-    }
     return this.patientRepository.save(createPatientDto);
   }
 
