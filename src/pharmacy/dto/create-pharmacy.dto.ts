@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsString, IsNumber } from 'class-validator';
 
 export class CreatePharmacyDto {
   @IsNotEmpty()
@@ -6,7 +6,7 @@ export class CreatePharmacyDto {
   drug_name: string;
 
   @IsNotEmpty()
-  @IsString()
+  @IsNumber()
   drug_price: string;
 
   @IsNotEmpty()
@@ -14,7 +14,7 @@ export class CreatePharmacyDto {
   drug_category: string;
 
   @IsNotEmpty()
-  @IsString()
+  @IsNumber()
   drug_quantity: string;
 
   @IsString()
