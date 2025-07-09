@@ -70,7 +70,7 @@ export class Patient {
   address: string;
 
   @Column({
-    nullable: true,
+    nullable: false,
     length: 100,
     type: 'varchar',
   })
