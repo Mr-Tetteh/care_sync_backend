@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { CreatePatientDto } from './dto/create-patient.dto';
 import { UpdatePatientDto } from './dto/update-patient.dto';
 import { Repository } from 'typeorm';
@@ -12,7 +12,10 @@ export class PatientService {
     private readonly patientRepository: Repository<Patient>,
   ) {}
 
-  create(createPatientDto: CreatePatientDto) {
+  public async create(createPatientDto: CreatePatientDto) {
+    /*if (await this.findOne(createPatientDto.email)) {
+      throw new BadRequestException('Sorry Patient already exists');
+    }*/
     return this.patientRepository.save(createPatientDto);
   }
 
