@@ -49,7 +49,6 @@ export class User {
       'Lab_Technician',
       'Receptionist',
     ],
-    default: 'Receptionist',
   })
   role: string;
   @Column({
