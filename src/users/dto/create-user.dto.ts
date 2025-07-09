@@ -31,7 +31,6 @@ export class CreateUserDto {
   @IsNotEmpty({ message: 'Gender is required' })
   @IsString()
   gender: string;
-
   @IsString()
   @IsOptional()
   role?: string;

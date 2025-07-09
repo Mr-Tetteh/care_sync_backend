@@ -45,19 +45,20 @@ export class UsersService {
       gender: createUserDto.gender,
       date_of_birth: createUserDto.date_of_birth,
       phone: createUserDto.phone,
+      role: createUserDto.role,
       password: await bcrypt.hash(createUserDto.password, 10),
     });
 
     const saveUser = await this.userRepository.save(user);
-   /* try {
-      const smsMessage = `Hello ${saveUser.first_name}, welcome to care sync staff portal.  your default password is:
-      ${rawPassword}
-      
-      Please do well to reset your password`;
-      await this.sendWithSMSONLINEGH(saveUser.phone.toString(), smsMessage);
-    } catch (error) {
-      console.error('Failed to send SMS notification:', error);
-    }*/
+    /* try {
+       const smsMessage = `Hello ${saveUser.first_name}, welcome to care sync staff portal.  your default password is:
+       ${rawPassword}
+       
+       Please do well to reset your password`;
+       await this.sendWithSMSONLINEGH(saveUser.phone.toString(), smsMessage);
+     } catch (error) {
+       console.error('Failed to send SMS notification:', error);
+     }*/
   }
 
   findAll() {
