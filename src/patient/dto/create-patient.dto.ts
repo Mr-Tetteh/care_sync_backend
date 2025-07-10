@@ -19,10 +19,9 @@ export class CreatePatientDto {
   phone?: string;
 
   @IsOptional()
+  @IsEmail()
+  @Transform(({ value }) => (value === '' ? undefined : value))
   email?: string;
-
-  @IsOptional()
-  age?: number;
 
   @IsString()
   @IsNotEmpty()
@@ -34,7 +33,7 @@ export class CreatePatientDto {
 
   @IsString()
   @IsOptional()
-  NHIS?: string;
+  ghana_card_number?: string;
 
   @IsNotEmpty()
   @Transform(({ value }) => new Date(value))
@@ -42,41 +41,13 @@ export class CreatePatientDto {
 
   @IsNotEmpty()
   @IsString()
-  guardian_1_first_name: string;
-
-  @IsOptional()
-  @IsString()
-  guardian_1_last_name?: string;
+  emergency_personal_name: string;
 
   @IsNotEmpty()
   @IsString()
-  guardian_1_relation: string;
+  emergency_personal_contact: string;
 
   @IsNotEmpty()
   @IsString()
-  guardian_1_contact: string;
-
-  @IsNotEmpty()
-  @IsString()
-  guardian_1_residence?: string;
-
-  @IsOptional()
-  @IsString()
-  guardian_2_first_name?: string;
-
-  @IsOptional()
-  @IsString()
-  guardian_2_last_name?: string;
-
-  @IsOptional()
-  @IsString()
-  guardian_2_relation?: string;
-
-  @IsOptional()
-  @IsString()
-  guardian_2_contact?: string;
-
-  @IsOptional()
-  @IsString()
-  guardian_2_residence?: string;
+  patient_id: string;
 }
