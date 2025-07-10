@@ -39,7 +39,7 @@ export class Patient {
     nullable: true,
     length: 255,
     type: 'varchar',
-    unique: true,
+    unique: false,
   })
   email: string;
 
@@ -49,12 +49,6 @@ export class Patient {
     type: 'varchar',
   })
   gender: string;
-
-  @Column({
-    nullable: true,
-    type: 'int',
-  })
-  age: number;
 
   @Column({
     nullable: false,
@@ -74,78 +68,28 @@ export class Patient {
     length: 100,
     type: 'varchar',
   })
-  NHIS: string;
+  ghana_card_number: string;
 
   @Column({
     nullable: false,
-    length: 100,
+    length: 255,
     type: 'varchar',
   })
-  guardian_1_first_name: string;
-
-  @Column({
-    nullable: true,
-    length: 100,
-    type: 'varchar',
-  })
-  guardian_1_last_name: string;
+  emergency_personal_name: string;
 
   @Column({
     nullable: false,
-    length: 100,
+    length: 255,
     type: 'varchar',
   })
-  guardian_1_relation: string;
+  emergency_personal_contact: string;
 
   @Column({
     nullable: false,
-    length: 20,
+    length: 7,
     type: 'varchar',
   })
-  guardian_1_contact: string;
-
-  @Column({
-    nullable: false,
-    length: 100,
-    type: 'varchar',
-  })
-  guardian_1_residence: string;
-
-  @Column({
-    nullable: true,
-    length: 100,
-    type: 'varchar',
-  })
-  guardian_2_first_name: string;
-
-  @Column({
-    nullable: true,
-    length: 100,
-    type: 'varchar',
-  })
-  guardian_2_last_name: string;
-
-  @Column({
-    nullable: true,
-    length: 100,
-    type: 'varchar',
-  })
-  guardian_2_relation: string;
-
-  @Column({
-    nullable: true,
-    length: 20,
-    type: 'varchar',
-  })
-  guardian_2_contact: string;
-
-  @Column({
-    nullable: true,
-    length: 100,
-    type: 'varchar',
-  })
-  guardian_2_residence: string;
-
+  patient_id: string;
   @Column({
     nullable: false,
     type: 'datetime',
