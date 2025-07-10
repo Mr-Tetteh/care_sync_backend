@@ -77,8 +77,17 @@ export class UsersService {
     return this.userRepository.find({ where: { role: Not('Patient') } });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return this.userRepository.update(id, updateUserDto);
+  public async update(id: number, updateUserDto: UpdateUserDto) {
+    await this.userRepository.update(id, {
+      first_name: updateUserDto.first_name,
+      last_name: updateUserDto.last_name,
+      other_names: updateUserDto.other_names,
+      email: updateUserDto.email,
+      phone: updateUserDto.phone,
+      date_of_birth: updateUserDto.date_of_birth,
+      gender: updateUserDto.gender,
+    });
+    return { message: 'User updated successfully' };
   }
 
   async updateUser(user: User): Promise<User> {
