@@ -7,10 +7,53 @@ export class PatientsRecord {
   @PrimaryGeneratedColumn()
   id: number;
   @Column({
-    type: 'longtext',
+    type: 'float',
+    nullable: false,
+  })
+  temperature: string;
+
+  @Column({
+    type: 'float',
+    nullable: false,
+  })
+  pulse_rate: number;
+
+  @Column({
+    type: 'int',
+    nullable: false,
+  })
+  respiratory_rate: number;
+
+  @Column({
+    type: 'varchar',
+    nullable: false,
+  })
+  blood_pressure: string;
+
+  @Column({
+    type: 'float',
+    nullable: false,
+  })
+  weight: number;
+
+  @Column({
+    type: 'float',
     nullable: true,
   })
-  nurse_notes: string;
+  spo2: string;
+
+  @Column({
+    type: 'float',
+    nullable: true,
+  })
+  fbs: number;
+
+  @Column({
+    type: 'float',
+    nullable: true,
+  })
+  rbs: string;
+
   @Column({
     type: 'longtext',
     nullable: true,
