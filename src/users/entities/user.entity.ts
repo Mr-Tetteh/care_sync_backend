@@ -46,7 +46,7 @@ export class User {
       'Nurse',
       'Doctor',
       'Pharmacist',
-      'Lab_Technician',
+      'Lab Technician',
       'Receptionist',
     ],
   })
