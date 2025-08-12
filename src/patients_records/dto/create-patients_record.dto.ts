@@ -36,8 +36,19 @@ export class CreatePatientsRecordDto {
 
   @IsOptional()
   @IsString()
-  doctor_notes?: string;
-
+  history?: string;
+  @IsOptional()
+  @IsString()
+  examination_findings?: string;
+  @IsOptional()
+  @IsString()
+  diagnosis?: string;
+  @IsOptional()
+  @IsString()
+  investigations?: string;
+  @IsOptional()
+  @IsString()
+  treatment?: string;
   @IsOptional()
   @IsString()
   laboratory_notes?: string;

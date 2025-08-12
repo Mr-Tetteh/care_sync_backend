@@ -58,7 +58,30 @@ export class PatientsRecord {
     type: 'varchar',
     nullable: true,
   })
-  doctor_notes: string;
+  history: string;
+  @Column({
+    type: 'varchar',
+    nullable: true,
+  })
+  examination_findings: string;
+
+  @Column({
+    type: 'varchar',
+    nullable: true,
+  })
+  diagnosis: string;
+  @Column({
+    type: 'varchar',
+    nullable: true,
+  })
+  investigations: string;
+
+  @Column({
+    type: 'varchar',
+    nullable: true,
+  })
+  treatment: string;
+
   @Column({
     type: 'longtext',
     nullable: true,
