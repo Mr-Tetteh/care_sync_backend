@@ -58,6 +58,12 @@ export class PatientsRecord {
     type: 'varchar',
     nullable: true,
   })
+  nurse_additional_notes: string;
+
+  @Column({
+    type: 'varchar',
+    nullable: true,
+  })
   history: string;
   @Column({
     type: 'varchar',
@@ -83,16 +89,33 @@ export class PatientsRecord {
   treatment: string;
 
   @Column({
+    type: 'varchar',
+    nullable: true,
+  })
+  doctor_additional_notes: string;
+
+  @Column({
     type: 'longtext',
     nullable: true,
   })
   laboratory_notes: string;
 
   @Column({
-    type: 'longtext',
+    type: 'varchar',
     nullable: true,
   })
-  pharmacist_notes: string;
+  medication_notes: string;
+
+  @Column({
+    type: 'varchar',
+    nullable: true,
+  })
+  prescription_notes: string;
+  @Column({
+    type: 'varchar',
+    nullable: true,
+  })
+  pharmacist_additional_notes: string;
 
   @ManyToOne(() => Patient, (patient) => patient.patientsRecords, {
     onDelete: 'CASCADE',

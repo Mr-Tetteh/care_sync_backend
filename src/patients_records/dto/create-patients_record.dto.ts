@@ -33,6 +33,9 @@ export class CreatePatientsRecordDto {
   @IsOptional()
   @IsString()
   fbs?: string;
+  @IsOptional()
+  @IsString()
+  nurse_additional_notes?: string;
 
   @IsOptional()
   @IsString()
@@ -51,9 +54,18 @@ export class CreatePatientsRecordDto {
   treatment?: string;
   @IsOptional()
   @IsString()
+  doctor_additional_notes?: string;
+  @IsOptional()
+  @IsString()
   laboratory_notes?: string;
 
   @IsOptional()
   @IsString()
-  pharmacist_notes?: string;
+  medication_notes?: string;
+  @IsOptional()
+  @IsString()
+  prescription_notes?: string;
+  @IsOptional()
+  @IsString()
+  pharmacist_additional_notes?: string;
 }
