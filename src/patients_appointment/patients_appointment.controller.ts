@@ -38,6 +38,7 @@ export class PatientsAppointmentController {
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard)
   update(
     @Param('id') id: string,
     @Body() updatePatientsAppointmentDto: UpdatePatientsAppointmentDto,

@@ -40,6 +40,12 @@ export class UsersController {
     return this.usersService.findByRole();
   }
 
+  @Get('doctors')
+  @UseGuards(AuthGuard)
+  findAllDoctors() {
+    return this.usersService.findByDoctor();
+  }
+
   @Get(':id')
   @UseGuards(AuthGuard)
   findOne(@Param('id') id: string) {
