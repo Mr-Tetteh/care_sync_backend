@@ -80,6 +80,9 @@ export class UsersService {
   findByDoctor() {
     return this.userRepository.find({ where: { role: 'Doctor' } });
   }
+  findByReceptionist() {
+    return this.userRepository.find({ where: { role: 'Receptionist' } });
+  }
 
   public async update(id: number, updateUserDto: UpdateUserDto) {
     await this.userRepository.update(id, {

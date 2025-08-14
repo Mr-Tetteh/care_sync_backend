@@ -39,4 +39,19 @@ export class MailService {
       console.error('Error sending email:', error);
     }
   }
+
+  async sendAppointmentEmail(recipient: string) {
+    const transport = this.emailTransport();
+    const options: nodemailer.SendMailOptions = {
+      from: `"Care Sync" <${this.configService.get<string>('EMAIL_USER')}>`,
+      to: recipient,
+      subject: 'New Appointment Scheduled',
+      html: `<p> Hello a new appointment has been booked.</p> <p> please login to your account to view details and confirm the appointment</p> <p> Thank you!</p>`,
+    };
+    try {
+      await transport.sendMail(options);
+    } catch (error) {
+      console.error('Error sending email:', error);
+    }
+  }
 }
