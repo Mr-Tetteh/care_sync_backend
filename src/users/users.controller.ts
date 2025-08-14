@@ -46,6 +46,11 @@ export class UsersController {
     return this.usersService.findByDoctor();
   }
 
+  @Get('receptionist')
+  findByReceptionist() {
+    return this.usersService.findByReceptionist();
+  }
+
   @Get(':id')
   @UseGuards(AuthGuard)
   findOne(@Param('id') id: string) {
