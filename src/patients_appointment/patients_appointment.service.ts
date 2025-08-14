@@ -109,13 +109,19 @@ export class PatientsAppointmentService {
       updatePatientsAppointmentDto.full_name &&
       updatePatientsAppointmentDto.appointment_date &&
       updatePatientsAppointmentDto.appointment_time &&
-      updatePatientsAppointmentDto.status
+      updatePatientsAppointmentDto.status &&
+      updatePatientsAppointmentDto.selected_doctor_contact
     ) {
       try {
         const smsMessage = `Hello ${updatePatientsAppointmentDto.full_name}, your appointment scheduled for ${updatePatientsAppointmentDto.appointment_date} at ${updatePatientsAppointmentDto.appointment_time} has been ${updatePatientsAppointmentDto.status}. We hope to see you soon!`;
         await this.sendWithSMSONLINEGH(
           updatePatientsAppointmentDto.phone_number.toString(),
           smsMessage,
+        );
+        const doctorMessage = `Hello Doc, you have been scheduled an appointment with ${updatePatientsAppointmentDto.full_name} on ${updatePatientsAppointmentDto.appointment_date} at ${updatePatientsAppointmentDto.appointment_time}.`;
+        await this.sendWithSMSONLINEGH(
+          updatePatientsAppointmentDto.selected_doctor_contact.toString(),
+          doctorMessage,
         );
       } catch (error) {
         console.error('Failed to send SMS notification:', error);

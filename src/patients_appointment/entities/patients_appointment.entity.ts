@@ -44,6 +44,12 @@ export class PatientsAppointment {
   status: string;
 
   @Column({
+    type: 'varchar',
+    nullable: true,
+    length: 255,
+  })
+  selected_doctor_contact?: string;
+  @Column({
     default: () => 'CURRENT_TIMESTAMP',
   })
   Created_at: Date;
