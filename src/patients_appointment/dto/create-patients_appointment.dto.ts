@@ -25,4 +25,8 @@ export class CreatePatientsAppointmentDto {
   @IsOptional()
   @IsString()
   selected_doctor_contact?: string;
+
+  @IsOptional()
+  @IsNumber()
+  user_id?: number;
 }
