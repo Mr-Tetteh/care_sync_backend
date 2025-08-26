@@ -1,6 +1,13 @@
 import { User } from 'src/users/entities/user.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Patient } from '../../patient/entities/patient.entity';
+import { Lab } from '../../labs/entities/lab.entity';
 
 @Entity('patients_record')
 export class PatientsRecord {
@@ -121,6 +128,9 @@ export class PatientsRecord {
     onDelete: 'CASCADE',
   })
   patient: Patient;
+
+  @OneToMany(() => Lab, (lab) => lab.patientRecord, { cascade: true })
+  labs: Lab[];
 
   @Column({
     nullable: false,
