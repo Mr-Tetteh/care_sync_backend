@@ -15,18 +15,18 @@ export class LabsService {
   ) {}
 
   async create(
+    patientRecordId: number,
     createLabDto: CreateLabDto,
     file: Express.Multer.File,
   ): Promise<any> {
     const patientRecord = await this.patientRecordRepo.findOne({
-      where: { id: Number(createLabDto.patientRecordId) },
+      where: { id: patientRecordId },
     });
 
     if (!patientRecord) {
       throw new NotFoundException('Patient record not found');
     }
 
-    // Store file path
     const filePath = `uploads/${file.filename}`;
 
     const lab = this.labRepository.create({

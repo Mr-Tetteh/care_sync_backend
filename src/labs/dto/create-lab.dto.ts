@@ -5,11 +5,11 @@ export class CreateLabDto {
   @IsString()
   lab_name: string;
 
-  @IsNotEmpty()
+/*  @IsNotEmpty()
   @IsString()
-  lab_report: string;
+  lab_report: string;*/
 
-  @IsNotEmpty()
+/*  @IsNotEmpty()
   @IsNumberString()
-  patientRecordId: string;
+  patientRecordId: string;*/
 }

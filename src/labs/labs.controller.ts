@@ -26,17 +26,10 @@ import { extname } from 'path';
 export class LabsController {
   constructor(private readonly labsService: LabsService) {}
 
-  @Post()
+  @Post(':id')
   @UseGuards(AuthGuard)
   @UseInterceptors(
-    FileInterceptor('file', {
-      storage: './public/uploads',
-    }),
-  )
-  @Post()
-  @UseGuards(AuthGuard)
-  @UseInterceptors(
-    FileInterceptor('file', {
+    FileInterceptor('lab_report', {
       storage: diskStorage({
         destination: './public/uploads',
         filename: (req, file, cb) => {
@@ -48,17 +41,13 @@ export class LabsController {
   )
   create(
     @Body() createLabDto: CreateLabDto,
-    @UploadedFile(
-      new ParseFilePipe({
-        validators: [
-          new MaxFileSizeValidator({ maxSize: 2 * 1024 * 1024 }), // 2MB
-          new FileTypeValidator({ fileType: /(pdf|doc|docx)$/ }),
-        ],
-      }),
-    )
+    @Param('id') id: string,
+    @UploadedFile()
     file: Express.Multer.File,
   ) {
-    return this.labsService.create(createLabDto, file);
+    // Convert string id to number and pass it to the service
+    const patientRecordId = parseInt(id, 10);
+    return this.labsService.create(patientRecordId, createLabDto, file);
   }
 
   @Get()
