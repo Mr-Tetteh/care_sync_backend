@@ -42,7 +42,11 @@ export class PatientsAppointment {
     default: 'pending',
   })
   status: string;
-
+  @Column({
+    type: 'varchar',
+    nullable: false,
+  })
+  department: string;
   @Column({
     type: 'varchar',
     nullable: true,

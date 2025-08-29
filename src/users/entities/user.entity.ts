@@ -52,6 +52,17 @@ export class User {
   })
   role: string;
   @Column({
+    nullable: true,
+    type: 'varchar',
+  })
+  doctors_specialization;
+  @Column({
+    type: 'bool',
+    nullable: true,
+    default: false,
+  })
+  active_doctor;
+  @Column({
     nullable: false,
     length: 255,
     type: 'varchar',

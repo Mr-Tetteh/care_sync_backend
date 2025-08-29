@@ -22,6 +22,10 @@ export class CreatePatientsAppointmentDto {
   @IsString()
   status?: string;
 
+  @IsNotEmpty()
+  @IsString()
+  department: string;
+
   @IsOptional()
   @IsString()
   selected_doctor_contact?: string;

@@ -1,4 +1,5 @@
 import {
+  IsBoolean,
   IsDateString,
   IsEmail,
   IsNotEmpty,
@@ -34,6 +35,12 @@ export class CreateUserDto {
   @IsString()
   @IsOptional()
   role?: string;
+  @IsString()
+  @IsOptional()
+  doctors_specialization: string;
+  @IsOptional()
+  @IsBoolean()
+  active_doctor: boolean;
   @IsNotEmpty()
   @Transform(({ value }) => new Date(value))
   date_of_birth: Date;

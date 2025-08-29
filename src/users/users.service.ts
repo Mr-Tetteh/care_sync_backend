@@ -46,6 +46,7 @@ export class UsersService {
       date_of_birth: createUserDto.date_of_birth,
       phone: createUserDto.phone,
       role: createUserDto.role,
+      doctors_specialization: createUserDto.doctors_specialization,
       password: await bcrypt.hash(createUserDto.password, 10),
     });
 
@@ -80,6 +81,7 @@ export class UsersService {
   findByDoctor() {
     return this.userRepository.find({ where: { role: 'Doctor' } });
   }
+
   findByReceptionist() {
     return this.userRepository.find({ where: { role: 'Receptionist' } });
   }
