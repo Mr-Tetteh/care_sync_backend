@@ -54,7 +54,9 @@ export class LabsService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} lab`;
+    return this.labRepository.find({
+      where: { patientRecord: { id } },
+    });
   }
 
   update(id: number, updateLabDto: UpdateLabDto) {

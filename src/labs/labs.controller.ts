@@ -55,7 +55,8 @@ export class LabsController {
     return this.labsService.findAll();
   }
 
-  @Get(':id')
+  @Get('patent_record/:id')
+  @UseGuards(AuthGuard)
   findOne(@Param('id') id: string) {
     return this.labsService.findOne(+id);
   }
