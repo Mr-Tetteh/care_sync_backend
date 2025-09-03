@@ -79,7 +79,9 @@ export class UsersService {
   }
 
   findByDoctor() {
-    return this.userRepository.find({ where: { role: 'Doctor' } });
+    return this.userRepository.find({
+      where: { role: 'Doctor', active_doctor: true },
+    });
   }
 
   findByReceptionist() {
@@ -95,6 +97,7 @@ export class UsersService {
       phone: updateUserDto.phone,
       date_of_birth: updateUserDto.date_of_birth,
       gender: updateUserDto.gender,
+      active_doctor: updateUserDto.active_doctor,
     });
     return { message: 'User updated successfully' };
   }

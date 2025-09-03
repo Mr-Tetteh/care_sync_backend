@@ -56,12 +56,9 @@ export class User {
     type: 'varchar',
   })
   doctors_specialization;
-  @Column({
-    type: 'bool',
-    nullable: true,
-    default: false,
-  })
-  active_doctor;
+
+  @Column({ type: 'boolean', default: false })
+  active_doctor: boolean;
   @Column({
     nullable: false,
     length: 255,

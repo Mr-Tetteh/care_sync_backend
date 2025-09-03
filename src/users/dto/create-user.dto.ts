@@ -40,7 +40,7 @@ export class CreateUserDto {
   doctors_specialization: string;
   @IsOptional()
   @IsBoolean()
-  active_doctor: boolean;
+  active_doctor?: boolean;
   @IsNotEmpty()
   @Transform(({ value }) => new Date(value))
   date_of_birth: Date;
