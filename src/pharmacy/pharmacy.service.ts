@@ -37,7 +37,7 @@ export class PharmacyService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} pharmacy`;
+    return this.pharmacyRepository.find({ where: { id } });
   }
 
   update(id: number, updatePharmacyDto: UpdatePharmacyDto) {
