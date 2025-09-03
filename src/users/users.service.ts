@@ -46,6 +46,7 @@ export class UsersService {
       date_of_birth: createUserDto.date_of_birth,
       phone: createUserDto.phone,
       role: createUserDto.role,
+      doctors_specialization: createUserDto.doctors_specialization,
       password: await bcrypt.hash(createUserDto.password, 10),
     });
 
@@ -78,8 +79,11 @@ export class UsersService {
   }
 
   findByDoctor() {
-    return this.userRepository.find({ where: { role: 'Doctor' } });
+    return this.userRepository.find({
+      where: { role: 'Doctor', active_doctor: true },
+    });
   }
+
   findByReceptionist() {
     return this.userRepository.find({ where: { role: 'Receptionist' } });
   }
@@ -93,6 +97,7 @@ export class UsersService {
       phone: updateUserDto.phone,
       date_of_birth: updateUserDto.date_of_birth,
       gender: updateUserDto.gender,
+      active_doctor: updateUserDto.active_doctor,
     });
     return { message: 'User updated successfully' };
   }

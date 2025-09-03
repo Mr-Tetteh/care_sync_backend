@@ -22,6 +22,7 @@ export class PatientsAppointmentService {
       appointment_date: createPatientsAppointmentDto.appointment_date,
       appointment_time: createPatientsAppointmentDto.appointment_time,
       reason: createPatientsAppointmentDto.reason,
+      department: createPatientsAppointmentDto.department,
     });
 
     const savedAppointment =
