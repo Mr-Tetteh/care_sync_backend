@@ -33,11 +33,13 @@ export class PharmacyController {
   }
 
   @Get(':id')
+  @UseGuards(AuthGuard)
   findOne(@Param('id') id: string) {
     return this.pharmacyService.findOne(+id);
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard)
   update(
     @Param('id') id: string,
     @Body() updatePharmacyDto: UpdatePharmacyDto,

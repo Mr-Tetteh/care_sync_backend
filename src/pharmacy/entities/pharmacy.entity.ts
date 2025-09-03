@@ -12,11 +12,12 @@ export class Pharmacy {
   drug_name: string;
 
   @Column({
-    type: 'varchar',
+    type: 'decimal',
     nullable: false,
-    length: 255,
+    scale: 2,
+    precision: 10,
   })
-  drug_price: string;
+  drug_price: number;
 
   @Column({
     type: 'varchar',
@@ -26,11 +27,10 @@ export class Pharmacy {
   drug_category: string;
 
   @Column({
-    type: 'varchar',
+    type: 'int',
     nullable: false,
-    length: 255,
   })
-  drug_quantity: string;
+  drug_quantity: number;
 
   @Column({
     type: 'varchar',
