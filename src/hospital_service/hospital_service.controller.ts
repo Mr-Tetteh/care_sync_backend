@@ -32,6 +32,16 @@ export class HospitalServiceController {
     return this.hospitalServiceService.findOne(+id);
   }
 
+  @Get('nhis/true')
+  findByConsultationTrue() {
+    return this.hospitalServiceService.findByConsultationTrue();
+  }
+
+  @Get('nhis/false')
+  findByConsultationFalse() {
+    return this.hospitalServiceService.findByConsultationFalse();
+  }
+
   @Patch(':id')
   update(
     @Param('id') id: string,

@@ -21,11 +21,23 @@ export class HospitalServiceService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} hospitalService`;
+    return this.hospitalServiceRepository.findOneBy({ id });
+  }
+
+  findByConsultationTrue() {
+    return this.hospitalServiceRepository.findOne({
+      where: { NHIS: true, name: 'Consultation Fee' },
+    });
+  }
+
+  findByConsultationFalse() {
+    return this.hospitalServiceRepository.findOne({
+      where: { NHIS: false, name: 'Consultation Fee' },
+    });
   }
 
   update(id: number, updateHospitalServiceDto: UpdateHospitalServiceDto) {
-    return `This action updates a #${id} hospitalService`;
+    return this.hospitalServiceRepository.update(id, updateHospitalServiceDto);
   }
 
   remove(id: number) {
