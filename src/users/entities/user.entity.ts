@@ -48,6 +48,7 @@ export class User {
       'Pharmacist',
       'Lab Technician',
       'Receptionist',
+      'Accountant',
     ],
   })
   role: string;

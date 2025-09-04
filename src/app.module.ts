@@ -12,6 +12,8 @@ import { PharmacyModule } from './pharmacy/pharmacy.module';
 import { PatientModule } from './patient/patient.module';
 import { MailModule } from './mail/mail.module';
 import { LabsModule } from './labs/labs.module';
+import { HospitalServiceModule } from './hospital_service/hospital_service.module';
+import { LabServiceModule } from './lab_service/lab_service.module';
 
 @Module({
   imports: [
@@ -30,6 +32,8 @@ import { LabsModule } from './labs/labs.module';
     PatientModule,
     MailModule,
     LabsModule,
+    HospitalServiceModule,
+    LabServiceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
