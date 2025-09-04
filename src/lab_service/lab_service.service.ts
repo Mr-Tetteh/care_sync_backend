@@ -21,11 +21,11 @@ export class LabServiceService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} labService`;
+    return this.labServiceRepository.findOneBy({ id });
   }
 
   update(id: number, updateLabServiceDto: UpdateLabServiceDto) {
-    return `This action updates a #${id} labService`;
+    return this.labServiceRepository.update(id, updateLabServiceDto);
   }
 
   remove(id: number) {
