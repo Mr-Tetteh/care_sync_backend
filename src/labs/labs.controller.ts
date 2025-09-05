@@ -51,6 +51,7 @@ export class LabsController {
   }
 
   @Get()
+  @UseGuards(AuthGuard)
   findAll() {
     return this.labsService.findAll();
   }
@@ -62,11 +63,13 @@ export class LabsController {
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard)
   update(@Param('id') id: string, @Body() updateLabDto: UpdateLabDto) {
     return this.labsService.update(+id, updateLabDto);
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard)
   remove(@Param('id') id: string) {
     return this.labsService.remove(+id);
   }

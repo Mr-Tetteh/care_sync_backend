@@ -72,6 +72,7 @@ export class PharmacyController {
   // }
 
   @Delete(':id')
+  @UseGuards(AuthGuard)
   remove(@Param('id') id: string) {
     return this.pharmacyService.remove(+id);
   }
