@@ -20,6 +20,14 @@ export class LabServiceService {
     return this.labServiceRepository.find();
   }
 
+  findByNHISTrue() {
+    return this.labServiceRepository.find({ where: { NHIS: true } });
+  }
+
+  findByNHISFalse() {
+    return this.labServiceRepository.find({ where: { NHIS: false } });
+  }
+
   findOne(id: number) {
     return this.labServiceRepository.findOneBy({ id });
   }

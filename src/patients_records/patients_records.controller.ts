@@ -32,6 +32,7 @@ export class PatientsRecordsController {
   }
 
   @Get(':id')
+  @UseGuards(AuthGuard)
   findOne(@Param('id') id: string) {
     return this.patientsRecordsService.findOne(+id);
   }
