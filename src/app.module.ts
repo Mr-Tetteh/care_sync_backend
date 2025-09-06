@@ -14,6 +14,7 @@ import { MailModule } from './mail/mail.module';
 import { LabsModule } from './labs/labs.module';
 import { HospitalServiceModule } from './hospital_service/hospital_service.module';
 import { LabServiceModule } from './lab_service/lab_service.module';
+import { PaymentsModule } from './payments/payments.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { LabServiceModule } from './lab_service/lab_service.module';
     LabsModule,
     HospitalServiceModule,
     LabServiceModule,
+    PaymentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
