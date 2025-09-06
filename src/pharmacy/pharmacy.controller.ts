@@ -32,6 +32,12 @@ export class PharmacyController {
     return this.pharmacyService.findAllGroupedByCategory();
   }
 
+  @Get('drugs')
+  @UseGuards(AuthGuard)
+  findAllDrugs() {
+    return this.pharmacyService.findAll();
+  }
+
   @Get(':id')
   @UseGuards(AuthGuard)
   findOne(@Param('id') id: string) {
