@@ -88,7 +88,7 @@ export class PatientsAppointmentService {
   }
 
   findAll() {
-    return this.patientAppointmentRepository.find();
+    return this.patientAppointmentRepository.find({ order: { id: 'DESC' } });
   }
 
   findOne(id: number) {

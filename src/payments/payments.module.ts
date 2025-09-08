@@ -5,9 +5,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Payment } from './entities/payment.entity';
 import { Pharmacy } from '../pharmacy/entities/pharmacy.entity';
 import { HospitalService } from '../hospital_service/entities/hospital_service.entity';
+import { LabService } from '../lab_service/entities/lab_service.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Payment, HospitalService, Pharmacy])],
+  imports: [
+    TypeOrmModule.forFeature([Payment, HospitalService, Pharmacy, LabService]),
+  ],
   controllers: [PaymentsController],
   providers: [PaymentsService],
   exports: [PaymentsService],

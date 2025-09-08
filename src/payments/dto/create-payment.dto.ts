@@ -23,7 +23,7 @@ export class CreatePaymentDto {
   selectedLabsTrueNamesTotalAmount: number; // for cost fee of lab when insuranceCover is true
   @IsArray()
   @IsOptional()
-  selectedLabsFalseIds: number[]; // for multiple select
+  selectedLabsFalseIds?: number[]; // for multiple select
   @IsArray()
   @IsOptional()
   selectedLabsFalseNames?: string; // comma-separated names

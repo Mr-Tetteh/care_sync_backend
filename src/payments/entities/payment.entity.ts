@@ -30,4 +30,6 @@ export class Payment {
   consultationFalsePrice: number; // for consultation fee with insurance cover
   @Column({ type: 'decimal', precision: 10, scale: 2, nullable: true })
   consultationTruePrice: number; // for consultation fee without insurance cover
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
 }

@@ -6,6 +6,7 @@ import { Payment } from './entities/payment.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { HospitalService } from '../hospital_service/entities/hospital_service.entity';
 import { Pharmacy } from '../pharmacy/entities/pharmacy.entity';
+import { LabService } from '../lab_service/entities/lab_service.entity';
 
 @Injectable()
 export class PaymentsService {
@@ -16,38 +17,99 @@ export class PaymentsService {
     private readonly hospitalServiceRepository: Repository<HospitalService>,
     @InjectRepository(Pharmacy)
     private readonly pharmacyRepository: Repository<Pharmacy>,
+    @InjectRepository(LabService)
+    private readonly labServiceRepository: Repository<LabService>,
   ) {}
 
   async create(createPaymentDto: CreatePaymentDto) {
-    const selectedLabsTrueNames = await this.hospitalServiceRepository.find({
+    const selectedLabsTrueNames = await this.labServiceRepository.find({
       where: { id: In(createPaymentDto.selectedLabsTrueIds || []) },
     });
     const labTrueNames = selectedLabsTrueNames
       .map((lab) => lab.name)
       .join(', ');
+
+    const labsTrueTotalAmount = await this.labServiceRepository.find({
+      where: { id: In(createPaymentDto.selectedLabsTrueIds || []) },
+    });
+
+    const totalAmountLabTrue = labsTrueTotalAmount.reduce(
+      (sum, lab) => sum + Number(lab.price),
+      0,
+    );
+
+    const selectedLabsFalseNames = await this.labServiceRepository.find({
+      where: { id: In(createPaymentDto.selectedLabsFalseIds || []) },
+    });
+    const labFalseNames = selectedLabsFalseNames
+      .map((lab) => lab.name)
+      .join(', ');
+
+    const labsFalseTotalAmount = await this.labServiceRepository.find({
+      where: { id: In(createPaymentDto.selectedLabsFalseIds || []) },
+    });
+
+    const totalAmountLabFalse = labsFalseTotalAmount.reduce(
+      (sum, lab) => sum + Number(lab.price),
+      0,
+    );
+
+    const selectedDrugNames = await this.pharmacyRepository.find({
+      where: { id: In(createPaymentDto.selectedDrugIds || []) },
+    });
+    const drugNames = selectedDrugNames
+      .map((drug) => drug.drug_name)
+      .join(', ');
+
+    const DrugsTotalAmount = await this.pharmacyRepository.find({
+      where: { id: In(createPaymentDto.selectedDrugIds || []) },
+    });
+
+    const totalDrugsAmount = DrugsTotalAmount.reduce(
+      (sum, drug) => sum + Number(drug.drug_price),
+      0,
+    );
     const payment = this.paymentRepository.create({
       reasonForPayment: createPaymentDto.reasonForPayment,
       insuranceCover: createPaymentDto.insuranceCover,
       selectedLabsTrueIds: createPaymentDto.selectedLabsTrueIds,
       selectedLabsTrueNames: labTrueNames,
-      selectedLabsTrueNamesTotalAmount:
-        createPaymentDto.selectedLabsTrueNamesTotalAmount,
+      selectedLabsTrueNamesTotalAmount: totalAmountLabTrue,
       selectedLabsFalseIds: createPaymentDto.selectedLabsFalseIds,
-      selectedLabsFalseNames: createPaymentDto.selectedLabsFalseNames,
-      selectedLabsFalseNamesTotalAmount:
-        createPaymentDto.selectedLabsFalseNamesTotalAmount,
+      selectedLabsFalseNames: labFalseNames,
+      selectedLabsFalseNamesTotalAmount: totalAmountLabFalse,
       selectedDrugIds: createPaymentDto.selectedDrugIds,
-      selectedDrugNames: createPaymentDto.selectedDrugNames,
-      selectedDrugNamesTotalAmount:
-        createPaymentDto.selectedDrugNamesTotalAmount,
+      selectedDrugNames: drugNames,
+      selectedDrugNamesTotalAmount: totalDrugsAmount,
       consultationFalsePrice: createPaymentDto.consultationFalsePrice,
       consultationTruePrice: createPaymentDto.consultationTruePrice,
     });
     const savedPayment = this.paymentRepository.save(payment);
   }
 
-  findAll() {
-    return `This action returns all payments`;
+  findAllLabsPayments() {
+    return this.paymentRepository.find({ where: { reasonForPayment: 'Labs' } });
+  }
+
+  findAllDrugsPayments() {
+    return this.paymentRepository.find({
+      where: { reasonForPayment: 'Drugs' },
+      order: { id: 'DESC' },
+    });
+  }
+
+  findAllConsultationPayment() {
+    return this.paymentRepository.find({
+      where: { reasonForPayment: 'Consultation' },
+      order: { id: 'DESC' },
+    });
+  }
+
+  findLatestRequest() {
+    return this.paymentRepository.findOne({
+      where: {},
+      order: { id: 'DESC' },
+    });
   }
 
   findOne(id: number) {
