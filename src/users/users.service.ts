@@ -63,7 +63,10 @@ export class UsersService {
   }
 
   findAll() {
-    return this.userRepository.find({ where: { role: 'Patient' } });
+    return this.userRepository.find({
+      where: { role: 'Patient' },
+      order: { id: 'DESC' },
+    });
   }
 
   findOne(email: string) {
@@ -71,16 +74,23 @@ export class UsersService {
   }
 
   findOneById(id: number) {
-    return this.userRepository.findOne({ where: { id } });
+    return this.userRepository.findOne({
+      where: { id },
+      order: { id: 'DESC' },
+    });
   }
 
   findByRole() {
-    return this.userRepository.find({ where: { role: Not('Patient') } });
+    return this.userRepository.find({
+      where: { role: Not('Patient') },
+      order: { id: 'DESC' },
+    });
   }
 
   findByDoctor() {
     return this.userRepository.find({
       where: { role: 'Doctor', active_doctor: true },
+      order: { id: 'DESC' },
     });
   }
 

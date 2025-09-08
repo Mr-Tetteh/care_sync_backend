@@ -33,16 +33,20 @@ export class PatientsRecordsService {
   }
 
   findAll() {
-    return this.patientRecordRepository.find();
+    return this.patientRecordRepository.find({ order: { id: 'DESC' } });
   }
 
   findOne(id: number) {
-    return this.patientRecordRepository.findOne({ where: { id } });
+    return this.patientRecordRepository.findOne({
+      where: { id },
+      order: { id: 'DESC' },
+    });
   }
 
   findByPatientId(patientId: number) {
     return this.patientRecordRepository.find({
       where: { patient: { id: patientId } },
+      order: { id: 'DESC' },
     });
   }
 

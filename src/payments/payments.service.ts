@@ -87,8 +87,29 @@ export class PaymentsService {
     const savedPayment = this.paymentRepository.save(payment);
   }
 
-  findAll() {
-    return `This action returns all payments`;
+  findAllLabsPayments() {
+    return this.paymentRepository.find({ where: { reasonForPayment: 'Labs' } });
+  }
+
+  findAllDrugsPayments() {
+    return this.paymentRepository.find({
+      where: { reasonForPayment: 'Drugs' },
+      order: { id: 'DESC' },
+    });
+  }
+
+  findAllConsultationPayment() {
+    return this.paymentRepository.find({
+      where: { reasonForPayment: 'Consultation' },
+      order: { id: 'DESC' },
+    });
+  }
+
+  findLatestRequest() {
+    return this.paymentRepository.findOne({
+      where: {},
+      order: { id: 'DESC' },
+    });
   }
 
   findOne(id: number) {
