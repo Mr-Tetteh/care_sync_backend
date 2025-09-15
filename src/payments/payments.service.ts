@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreatePaymentDto } from './dto/create-payment.dto';
 import { UpdatePaymentDto } from './dto/update-payment.dto';
 import { In, Repository } from 'typeorm';
@@ -7,6 +7,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { HospitalService } from '../hospital_service/entities/hospital_service.entity';
 import { Pharmacy } from '../pharmacy/entities/pharmacy.entity';
 import { LabService } from '../lab_service/entities/lab_service.entity';
+import { Patient } from '../patient/entities/patient.entity';
 
 @Injectable()
 export class PaymentsService {
@@ -19,9 +20,19 @@ export class PaymentsService {
     private readonly pharmacyRepository: Repository<Pharmacy>,
     @InjectRepository(LabService)
     private readonly labServiceRepository: Repository<LabService>,
+    private readonly patientRepository: Repository<Patient>,
   ) {}
 
   async create(createPaymentDto: CreatePaymentDto) {
+    const patient = await this.patientRepository.findOne({
+      where: { patient_id: createPaymentDto.patient_id },
+    });
+    if (!patient) {
+      console.log(patient);
+
+      throw new BadRequestException('sorry user does not exit');
+    }
+
     const selectedLabsTrueNames = await this.labServiceRepository.find({
       where: { id: In(createPaymentDto.selectedLabsTrueIds || []) },
     });
@@ -83,6 +94,7 @@ export class PaymentsService {
       selectedDrugNamesTotalAmount: totalDrugsAmount,
       consultationFalsePrice: createPaymentDto.consultationFalsePrice,
       consultationTruePrice: createPaymentDto.consultationTruePrice,
+      patient_id: createPaymentDto.patient_id,
     });
     const savedPayment = this.paymentRepository.save(payment);
   }

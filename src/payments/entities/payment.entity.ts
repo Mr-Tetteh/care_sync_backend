@@ -4,6 +4,11 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 export class Payment {
   @PrimaryGeneratedColumn()
   id: number;
+  @Column({
+    type: 'varchar',
+    length: '14',
+  })
+  patient_id: string;
   @Column({ type: 'varchar', nullable: false, length: 255 })
   reasonForPayment: string;
   @Column({ type: 'boolean', nullable: false })
