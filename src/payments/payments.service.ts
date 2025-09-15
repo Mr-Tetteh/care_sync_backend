@@ -20,6 +20,7 @@ export class PaymentsService {
     private readonly pharmacyRepository: Repository<Pharmacy>,
     @InjectRepository(LabService)
     private readonly labServiceRepository: Repository<LabService>,
+    @InjectRepository(Patient)
     private readonly patientRepository: Repository<Patient>,
   ) {}
 
@@ -28,8 +29,6 @@ export class PaymentsService {
       where: { patient_id: createPaymentDto.patient_id },
     });
     if (!patient) {
-      console.log(patient);
-
       throw new BadRequestException('sorry user does not exit');
     }
 
