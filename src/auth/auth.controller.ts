@@ -3,12 +3,15 @@ import {
   Controller,
   Get,
   Post,
+  Put,
+  Req,
   Request,
-  Res,
+  UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignInDto } from './dto/signin.dto';
-import { Response } from 'express'; // 👈 not from @nestjs/common
+import { AuthGuard } from './auth.guard';
+import { ChangePasswordDto } from './dto/change-password.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -20,24 +23,8 @@ export class AuthController {
   }
 
   @Post('login')
-  async signIn(
-    @Body() signInDto: SignInDto,
-    @Res({ passthrough: true }) res: Response,
-  ) {
-    const token = await this.authService.signIn(
-      signInDto.email,
-      signInDto.password,
-    );
-
-    res.cookie('jwt', token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'none',
-      domain: '.codeprince.me',
-      maxAge: 1000 * 60 * 60 * 24, // 1 day
-    });
-
-    return { success: true };
+  signIn(@Body() signInDto: SignInDto) {
+    return this.authService.signIn(signInDto.email, signInDto.password);
   }
 
   @Post('logout')
