@@ -1,5 +1,12 @@
 import { PrimaryGeneratedColumn } from 'typeorm';
-import { IsArray, IsBoolean, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsBoolean,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class CreatePaymentDto {
@@ -45,4 +52,7 @@ export class CreatePaymentDto {
   @IsNumber()
   @IsOptional()
   consultationTruePrice?: number; // for consultation fee without insurance cover
+  @IsString()
+  @IsNotEmpty()
+  patient_id: string;
 }
