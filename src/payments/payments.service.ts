@@ -20,6 +20,7 @@ export class PaymentsService {
     private readonly pharmacyRepository: Repository<Pharmacy>,
     @InjectRepository(LabService)
     private readonly labServiceRepository: Repository<LabService>,
+    @InjectRepository(Patient)
     private readonly patientRepository: Repository<Patient>,
   ) {}
 
